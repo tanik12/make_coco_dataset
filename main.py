@@ -6,10 +6,10 @@ import re
 import xml.etree.ElementTree as et
 
 def read():
-    # 拡張子.jpgのファイルを取得する
+    # 拡張子.jpgと.xmlのファイルを取得する
     xml_path = './annotations/Annotations/*.xml'
     img_path = './images/train9999/*.jpg'
-    # image pathを取得する
+    # imageとxmlのpathを取得する
     file_lists = glob.glob(xml_path)
     img_lists = glob.glob(img_path)
     return file_lists, img_lists
@@ -22,12 +22,12 @@ def rename(file_lists, img_lists):
     prefixes = set() 
     for img_path in img_lists:
         img_name = os.path.basename(img_path)
-        #print(img_name)
         sp_str = img_name.split("_")
         pre_str = img_name.replace(sp_str[-1], "")
         #print(sp_str)
         prefixes.add(pre_str)
-    print(prefixes)
+    #print(prefixes) #debug
+    
     for file_name in file_lists:
         tree = et.ElementTree(file=file_name)
         root = tree.getroot()
@@ -48,8 +48,6 @@ def rename(file_lists, img_lists):
                          number = re.sub(r'\D', '', basename.replace(tmp, ""))
                 
                 for prefix in prefixes:
-                    #print('./images/train9999/' + prefix + number + ".jpg")
-                    #print(os.path.isfile('./images/train9999/' + prefix + number + ".jpg"))
                     if os.path.isfile('./images/train9999/' + prefix + number + ".jpg"):
                         print("Yes. exist file name")
                         os.rename('./images/train9999/' + prefix + number + ".jpg", './images/train9999/' + prefix_name + "%09.f.jpg" % i) #image名の変更
