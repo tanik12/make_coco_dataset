@@ -1,11 +1,22 @@
 ## このリポジトリについて
 VOC形式のデータセットと自作のデータセット(VOC形式)を1つのデータセットにするためのリポジトリです。<br>
-COCO形式からVOC形式に変換したデータセットでも動作確認はできています。<br>
+COCO形式からVOC形式に変換したデータセットでも動作確認はできています。<br><br>
+本リポジトリでは、COCO形式からVOC形式に変換したデータセットと自作データセットを1つにします。<br>
+
+## 使い方の前準備として
+1. mkdir mydataset && cd coco && mkdir annotations && mkdir images
+2. mkdir -p annotations/Annotations
+3. mkdir -p images/train9999 (train9999は暫定版なので後で変更する)
+
+　各ディレクトリについて<br>
+　mydatasetには自作データを入れること。<br>
+　annotations/Annotationsにアノテーションデータを入れること。<br>
+　images/train9999に画像データを入れること。<br>
 
 ## 使い方
 **1. cocoデータセットの移動**<br>
-　cocoアノテーションのファイル群をannotationsフォルダに入れる<br>
-　cocoの画像群をimagesに入れる。その後train999(暫定として)という名前に変更。<br><br>
+　cocoアノテーションのファイル群をannotations/Annotationsに入れる<br>
+　cocoの画像群をimages/train9999に入れる。<br><br>
 **2. 自作データセットの準備**<br>
 　　datasetディレクトリに自分のデータセットを置く。(一時保管用)<br>
 　　※注意<br>
